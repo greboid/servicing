@@ -1,5 +1,5 @@
 <?php
-  include('includes/smarty/libs/Smarty.class.php');
+  include('includes/_global.php');
   $tpl = new Smarty;
   $tpl->template_dir = getcwd() . '/templates/';
   $tpl->compile_dir  = getcwd() . '/templates/cache/';

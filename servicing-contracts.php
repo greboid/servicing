@@ -1,6 +1,6 @@
 <?php
   include('includes/_global.php');
-  $dbc = makeConnection('kfintranet');
+  $dbc = makeConnection('servicing');
 
   $tpl = new Smarty;
   $tpl->template_dir = getcwd() . '/templates/';

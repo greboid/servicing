@@ -1,0 +1,7 @@
+<?php
+$connections['servicing'] = array( 'driver'=>'mysql',
+                                'dbhost'=>'localhost',
+                                'dbname'=>'database',
+                                'dbuser'=>'user',
+                                'dbpassword'=>'password');
+ ?>

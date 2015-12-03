@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/favicon.ico">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="/css/jquery-ui.css" rel="stylesheet" >
-    <link href="/css/jquery-ui.min.css" rel="stylesheet">
-    <link href="/css/jquery-ui.structure.min.css" rel="stylesheet">
-    <link href="/css/jquery-ui.theme.min.css" rel="stylesheet">
-    <link href="/css/sweetalert.css" rel="stylesheet" >
-    <link href="/css/chosen.min.css" rel="stylesheet" >
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/bower_components/jquery-ui/themes/base/jquery-ui.min.css" rel="stylesheet">
+    <link href="/bower_components/jquery-ui/themes/base/tabs.css" rel="stylesheet">
+    <link href="/bower_components/jquery-ui/themes/base/theme.css" rel="stylesheet">
+    <link href="/bower_components/sweetalert/dist/sweetalert.min.js" rel="stylesheet" >
+    <link href="/bower_components/chosen/chosen.min.css" rel="stylesheet" >
     {block name="headerstyles"}{/block}
     <title>Servicing - {$title}</title>
   </head>
@@ -34,13 +33,11 @@
   		</div>
     </nav>
     {block name=contents}{/block}
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/ie-emulation-modes-warning.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery-ui.js"></script>
-    <script src="/js/ie-emulation-modes-warning.js"></script>
-    <script src="/js/sweetalert.min.js"></script>
-    <script src="/js/chosen.jquery.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/bower_components/chosen/chosen.jquery.min.js"></script>
     {block name="footerscripts"}{/block}
   </body>
 </html>

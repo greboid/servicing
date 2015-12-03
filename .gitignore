@@ -1,6 +1,5 @@
-templates/cache/
-includes/
-css/
-fonts/
-js/
-sessions/
+/templates/cache/
+/sessions/
+/bower_components/
+/vendor/
+/includes/config.php

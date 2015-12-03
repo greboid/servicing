@@ -1,6 +1,6 @@
 <?php
   include('includes/_global.php');
-  $dbc = makeConnection('kfintranet');
+  $dbc = makeConnection('servicing');
 
   $statement = $dbc->prepare('SELECT location_id, location_name, site_name
     FROM locations

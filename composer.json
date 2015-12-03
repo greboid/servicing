@@ -1,0 +1,13 @@
+{
+    "name": "greboid/servicing",
+    "require": {
+        "smarty/smarty": "^3.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Greg Holmes",
+            "email": "git@greg.holmes.name"
+        }
+    ]
+}

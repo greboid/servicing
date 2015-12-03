@@ -1,6 +1,6 @@
 <?php
   include('includes/_global.php');
-  $dbc = makeConnection('kfintranet');
+  $dbc = makeConnection('servicing');
 
   if (isset($_POST['deleteSite']) && isset($_POST['site']) && !empty($_POST['site'])) {
     //Check site has no items

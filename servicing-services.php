@@ -1,6 +1,6 @@
 <?php
   include('includes/_global.php');
-  $dbc = makeConnection('kfintranet');
+  $dbc = makeConnection('servicing');
   if (!empty($_POST['newServiceID']) && !empty($_POST['newServiceDate'])) {
     $_POST['newServiceDate'];
     $_POST['newServiceID'];
