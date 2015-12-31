@@ -11,7 +11,7 @@
     <link href="/bower_components/jquery-ui/themes/base/tabs.css" rel="stylesheet">
     <link href="/bower_components/jquery-ui/themes/base/theme.css" rel="stylesheet">
     <link href="/bower_components/sweetalert/dist/sweetalert.min.js" rel="stylesheet" >
-    <link href="/bower_components/chosen/chosen.min.css" rel="stylesheet" >
+    <link href="/bower_components/chosen-bootstrap/chosen.bootstrap.min.css" rel="stylesheet" >
     {block name="headerstyles"}{/block}
     <title>Servicing - {$title}</title>
   </head>
