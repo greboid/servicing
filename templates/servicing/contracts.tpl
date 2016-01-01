@@ -7,7 +7,7 @@
       <div class="row form-group">
           <label class="col-md-2 control-label" for="contractor">Contractor</label>
           <div class="col-md-10">
-            <select id="contractor" name="contractor" class="form-control" required>
+            <select data-placeholder="Choose a contractor" id="contractor" name="contractor" class="form-control" required>
               <option></option>
               {foreach item=contractor from=$contractors}
               <option
@@ -67,7 +67,7 @@
       <div class="form-group">
           <label class="col-md-2 control-label" for="contractor">Contract</label>
           <div class="col-md-9">
-            <select id="contract" name="contract" class="form-control" required>
+            <select data-placeholder="Choose a contract" id="editContract" name="editContract" class="form-control" required>
               <option></option>
               {foreach item=contract from=$contracts}
               <option
@@ -94,7 +94,7 @@
       <div class="form-group">
         <label class="col-md-2 control-label" for="items">Contract</label>
         <div class="col-md-9">
-          <select id="contract" name="contract" class="form-control" required>
+          <select data-placeholder="Choose a contract" id="deleteContract" name="deleteContract" class="form-control" required>
             <option></option>
             {foreach item=contract from=$contracts}
             <option
@@ -120,6 +120,8 @@
 {literal}
 <script>
   $("#contractor").chosen({allow_single_deselect: true})
+  $("#editContract").chosen({allow_single_deselect: true})
+  $("#deleteContract").chosen({allow_single_deselect: true})
   $("#items").chosen({allow_single_deselect: true})
 </script>
 {/literal}

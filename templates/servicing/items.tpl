@@ -13,7 +13,7 @@
     <div class="row form-group">
         <label class="col-md-2 control-label" for="location">Location</label>
         <div class="col-md-10">
-          <select id="location" name="location" class="form-control" required>
+          <select data-placeholder="Choose a location" id="location" name="location" class="form-control" required>
             <option></option>
             {foreach item=site from=$sites}
             <optgroup label="{$site['site_name']}">
@@ -30,7 +30,7 @@
     <div class="row form-group">
       <label class="col-md-2 control-label" for="type">Type</label>
       <div class="col-md-10">
-        <select id="type" name="type" class="form-control" required>
+        <select data-placeholder="Choose a type" id="type" name="type" class="form-control" required>
           <option></option>
           {foreach item=type from=$types}
           <option value="{$type['type_id']}">{$type['type_name']}</option>
@@ -41,7 +41,7 @@
     <div class="row form-group">
         <label class="col-md-2 control-label" for="contractor">Contract</label>
         <div class="col-md-10">
-          <select id="contractor" name="contractor" class="form-control" required>
+          <select data-placeholder="Choose a contract" id="contractor" name="contractor" class="form-control" required>
             <option></option>
             {foreach item=contractor from=$contractors}
             <option
@@ -59,7 +59,7 @@
     <div class="row form-group">
         <label class="col-md-2 control-label" for="interval">Interval</label>
         <div class="col-md-4">
-          <select id="interval" name="interval" class="form-control" required>
+          <select data-placeholder="Choose an interval" id="interval" name="interval" class="form-control" required>
           <option></option>
             {foreach item=interval from=$intervals}
             <option value="{$interval['intervals_id']}">{$interval['intervals_name']}</option>
@@ -135,6 +135,10 @@
 {block name="footerscripts"}
 {literal}
 <script>
+  $("#location").chosen({allow_single_deselect: true})
+  $("#type").chosen({allow_single_deselect: true})
+  $("#contractor").chosen({allow_single_deselect: true})
+  $("#interval").chosen({allow_single_deselect: true})
   $("#editItem").chosen({allow_single_deselect: true})
   $("#deleteItem").chosen({allow_single_deselect: true})
 </script>

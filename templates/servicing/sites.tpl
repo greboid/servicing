@@ -1,6 +1,6 @@
 {extends file="_base.tpl"} {block name=contents}
 <div class="container">
-  <form id="addSite" class="form-horizontal" method="post" role="form">
+  <form class="form-horizontal" method="post" role="form">
     <fieldset>
       <legend>Add Site</legend>
       <div class="form-group">
@@ -15,13 +15,13 @@
     </fieldset>
   </form>
 
-  <form id="editSite" class="form-horizontal" method="post" role="form">
+  <form class="form-horizontal" method="post" role="form">
     <fieldset>
       <legend>Edit Site</legend>
       <div class="row form-group">
         <label class="col-md-2 control-label" for="site">Site</label>
         <div class="col-md-9">
-          <select data-placeholder="Choose a site to delete" id="editSite" name="editSite" class="form-control" required>
+          <select data-placeholder="Choose a site to edit" id="editSite" name="editSite" class="form-control" required>
             <option></option>
             {foreach item=site from=$sites}
             <option value="{$site['site_id']}">{$site['site_name']}</option>
@@ -29,13 +29,13 @@
           </select>
         </div>
         <div class="col-md-1">
-          <button id="deleteSite" name="deleteSite" value="true" class="btn btn-primary" disabled>Edit</button>
+          <button class="btn btn-primary" disabled>Edit</button>
         </div>
       </div>
     </fieldset>
   </form>
 
-  <form id="deleteSite" class="form-horizontal" method="post" role="form">
+  <form class="form-horizontal" method="post" role="form">
     <fieldset>
       <legend>Delete Site</legend>
       <div class="row form-group">
@@ -49,7 +49,7 @@
           </select>
         </div>
         <div class="col-md-1">
-          <button id="deleteSite" name="deleteSite" value="true" class="btn btn-danger" disabled>Delete</button>
+          <button class="btn btn-danger" disabled>Delete</button>
         </div>
       </div>
     </fieldset>
