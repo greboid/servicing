@@ -78,13 +78,40 @@
     </div>
     </fieldset>
   </form>
+
+  <form class="form-horizontal" role="form">
+    <fieldset>
+      <legend>Edit Serviceable Item</legend>
+      <div class="row form-group">
+        <label class="col-md-2 control-label" for="interval">Interval</label>
+        <div class="col-md-9">
+          <select data-placeholder="Choose a item to edit" id="editItem" name="editItem" class="form-control" required>
+            <option></option>
+            {foreach item=site from=$sites}
+              <optgroup label="{$site['site_name']}">
+              {foreach item=item from=$items}
+                {if $item['site_name'] == $site['site_name']}
+                <option value="{$item['item_id']}">{$item['item_name']}</option>
+                {/if}
+              {/foreach}
+              </optgroup>
+            {/foreach}
+          </select>
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-primary" disabled>Edit</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
   <form class="form-horizontal" role="form">
     <fieldset>
       <legend>Delete Serviceable Item</legend>
       <div class="row form-group">
         <label class="col-md-2 control-label" for="interval">Interval</label>
         <div class="col-md-9">
-          <select data-placeholder="Choose a item to delete" id="item" name="item" class="form-control" required>
+          <select data-placeholder="Choose a item to delete" id="deleteItem" name="deleteItem" class="form-control" required>
             <option></option>
             {foreach item=site from=$sites}
               <optgroup label="{$site['site_name']}">
@@ -108,7 +135,8 @@
 {block name="footerscripts"}
 {literal}
 <script>
-  $("#item").chosen({allow_single_deselect: true})
+  $("#editItem").chosen({allow_single_deselect: true})
+  $("#deleteItem").chosen({allow_single_deselect: true})
 </script>
 {/literal}
 {/block}

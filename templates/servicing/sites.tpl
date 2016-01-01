@@ -14,13 +14,34 @@
       </div>
     </fieldset>
   </form>
+
+  <form id="editSite" class="form-horizontal" method="post" role="form">
+    <fieldset>
+      <legend>Edit Site</legend>
+      <div class="row form-group">
+        <label class="col-md-2 control-label" for="site">Site</label>
+        <div class="col-md-9">
+          <select data-placeholder="Choose a site to delete" id="editSite" name="editSite" class="form-control" required>
+            <option></option>
+            {foreach item=site from=$sites}
+            <option value="{$site['site_id']}">{$site['site_name']}</option>
+            {/foreach}
+          </select>
+        </div>
+        <div class="col-md-1">
+          <button id="deleteSite" name="deleteSite" value="true" class="btn btn-primary" disabled>Edit</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
   <form id="deleteSite" class="form-horizontal" method="post" role="form">
     <fieldset>
       <legend>Delete Site</legend>
       <div class="row form-group">
         <label class="col-md-2 control-label" for="site">Site</label>
         <div class="col-md-9">
-          <select data-placeholder="Choose a site to delete" id="site" name="site" class="form-control" required>
+          <select data-placeholder="Choose a site to delete" id="deleteSite" name="deleteSite" class="form-control" required>
             <option></option>
             {foreach item=site from=$sites}
             <option value="{$site['site_id']}">{$site['site_name']}</option>
@@ -36,6 +57,7 @@
 </div>
 {/block} {block name="footerscripts"} {literal}
 <script>
-  $("#site").chosen({allow_single_deselect: true})
+  $("#editSite").chosen({allow_single_deselect: true})
+  $("#deleteSite").chosen({allow_single_deselect: true})
 </script>
 {/literal} {/block}
