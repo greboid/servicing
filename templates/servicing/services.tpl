@@ -41,8 +41,16 @@
                     <td class="{if $value['daysUntilService'] <= 0}danger{elseif $value['daysUntilService'] <= 60 }warning{else}success{/if}">{$value['nextService']|date_format:"%d/%m/%y"}</td>
                     <td class="{if $value['contractLeft'] <= 0}danger{elseif $value['contractLeft'] <= 60 }warning{else}success{/if}">{$value['contractEnd']}</td>
                     <td>
-                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#updateServiceModal" data-id="{$value['ID']}" data-lastService="{$value['lastService']}">Add service</button>
-                      <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewServiceModal" data-id="{$value['ID']}" data-history="{$value['service_history']}">Service History</button>
+                      <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <button class="btn btn-success btn-sm btn-block" data-toggle="modal" data-target="#updateServiceModal" data-id="{$value['ID']}" data-lastService="{$value['lastService']}">Add service</button>
+                          </div>
+                          <div class="col-md-6">
+                            <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#viewServiceModal" data-id="{$value['ID']}" data-history="{$value['service_history']}">Service History</button>
+                          </div>
+                        </div>
+                      </div>
                     </td>
                   </tr>
                 {/foreach}
