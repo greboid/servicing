@@ -9,7 +9,7 @@
           <input id="name" name="name" type="text" placeholder="Site name" class="form-control input-md" required>
         </div>
         <div class="col-md-1">
-          <button id="addSite" name="addSite" type="submit" class="btn btn-primary">Add</button>
+          <button id="addSite" name="addSite" type="submit" class="btn btn-primary btn-block">Add</button>
         </div>
       </div>
     </fieldset>
@@ -29,7 +29,7 @@
           </select>
         </div>
         <div class="col-md-1">
-          <button class="btn btn-primary" disabled>Edit</button>
+          <button class="btn btn-primary btn-block" disabled>Edit</button>
         </div>
       </div>
     </fieldset>
@@ -49,7 +49,7 @@
           </select>
         </div>
         <div class="col-md-1">
-          <button class="btn btn-danger" disabled>Delete</button>
+          <button class="btn btn-danger btn-block" disabled>Delete</button>
         </div>
       </div>
     </fieldset>

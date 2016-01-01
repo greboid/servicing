@@ -72,8 +72,8 @@
           </div>
     </div>
     <div class="row form-group">
-      <div class="col-md-offset-2 col-md-10">
-        <button type="submit" class="btn btn-primary">Add</button>
+      <div class="col-md-offset-11 col-md-1">
+        <button type="submit" class="btn btn-primary btn-block">Add</button>
       </div>
     </div>
     </fieldset>
@@ -99,7 +99,7 @@
           </select>
         </div>
         <div class="col-md-1">
-          <button class="btn btn-primary" disabled>Edit</button>
+          <button class="btn btn-primary btn-block" disabled>Edit</button>
         </div>
       </div>
     </fieldset>
@@ -125,7 +125,7 @@
           </select>
         </div>
         <div class="col-md-1">
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-danger btn-block">Delete</button>
         </div>
       </div>
     </fieldset>
