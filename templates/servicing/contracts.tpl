@@ -5,8 +5,8 @@
     <fieldset>
       <legend>New Contract</legend>
       <div class="row form-group">
-          <label class="col-md-1 control-label" for="contractor">Contractor</label>
-          <div class="col-md-11">
+          <label class="col-md-2 control-label" for="contractor">Contractor</label>
+          <div class="col-md-10">
             <select id="contractor" name="contractor" class="form-control" required>
               <option></option>
               {foreach item=contractor from=$contractors}
@@ -23,8 +23,8 @@
         </div>
       </div>
       <div class="row form-group">
-        <label class="col-md-1 control-label" for="lastServiced">Start</label>
-        <div class="col-md-5">
+        <label class="col-md-2 control-label" for="lastServiced">Start</label>
+        <div class="col-md-4">
           <input id="lastServiced" name="lastServiced" type="date" placeholder="Date of last service" class="form-control input-md" required>
         </div>
         <label class="col-md-1 control-label" for="lastServiced">End</label>
@@ -33,8 +33,8 @@
         </div>
       </div>
       <div class="row form-group">
-        <label class="col-md-1 control-label" for="items">Items</label>
-        <div class="col-md-11">
+        <label class="col-md-2 control-label" for="items">Items</label>
+        <div class="col-md-10">
           <select data-placeholder="Choose the items in this contract" id="items" name="items" class="form-control" multiple required>
             <option></option>
             {foreach item=site from=$sites}
@@ -48,8 +48,8 @@
         </div>
       </div>
       <div class="row form-group">
-        <label class="col-md-1 control-label" for="notes">Notes</label>
-        <div class="col-md-11">
+        <label class="col-md-2 control-label" for="notes">Notes</label>
+        <div class="col-md-10">
           <textarea class="form-control" id="notes" name="notes" placeholder="Notes" rows="3"></textarea>
         </div>
       </div>
@@ -65,8 +65,8 @@
     <fieldset>
       <legend>Edit Contract</legend>
       <div class="row form-group">
-          <label class="col-md-1 control-label" for="contractor">Contract</label>
-          <div class="col-md-11">
+          <label class="col-md-2 control-label" for="contractor">Contract</label>
+          <div class="col-md-10">
             <select id="contract" name="contract" class="form-control" required>
               <option></option>
               {foreach item=contract from=$contracts}
@@ -83,14 +83,14 @@
         </div>
       </div>
       <div class="row form-group">
-        <label class="col-md-1 control-label" for="lastServiced">End</label>
-        <div class="col-md-5">
+        <label class="col-md-2 control-label" for="lastServiced">End</label>
+        <div class="col-md-4">
           <input id="lastServiced" name="lastServiced" type="date" placeholder="Date of last service" class="form-control input-md" disabled required>
         </div>
       </div>
       <div class="row form-group">
-        <label class="col-md-1 control-label" for="items">Items</label>
-        <div class="col-md-11">
+        <label class="col-md-2 control-label" for="items">Items</label>
+        <div class="col-md-10">
           <select data-placeholder="Choose the items in this contract" id="items" name="items" class="form-control" disabled required>
             <option></option>
             {foreach item=site from=$sites}
@@ -104,8 +104,8 @@
         </div>
       </div>
       <div class="row form-group">
-        <label class="col-md-1 control-label" for="notes">Notes</label>
-        <div class="col-md-11">
+        <label class="col-md-2 control-label" for="notes">Notes</label>
+        <div class="col-md-10">
           <textarea class="form-control" id="notes" name="notes" placeholder="Notes" rows="3" disabled></textarea>
         </div>
       </div>
@@ -121,8 +121,8 @@
     <fieldset>
       <legend>Delete Contract</legend>
       <div class="form-group">
-        <label class="col-md-1 control-label" for="items">Contract</label>
-        <div class="col-md-10">
+        <label class="col-md-2 control-label" for="items">Contract</label>
+        <div class="col-md-9">
           <select id="contract" name="contract" class="form-control" required>
             <option></option>
             {foreach item=contract from=$contracts}
