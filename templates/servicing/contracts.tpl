@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="row form-group">
-      <div class="col-md-11 col-md-offset-1">
+      <div class="col-md-11 col-md-offset-2">
        <button class="btn btn-primary " name="add" type="submit">Add</button>
       </div>
      </div>
@@ -110,7 +110,7 @@
         </div>
       </div>
       <div class="row form-group">
-      <div class="col-md-11 col-md-offset-1">
+      <div class="col-md-11 col-md-offset-2">
        <button class="btn btn-primary " name="add" type="submit" disabled>Add</button>
       </div>
      </div>

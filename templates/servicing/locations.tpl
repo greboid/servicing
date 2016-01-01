@@ -45,7 +45,7 @@
           </select>
         </div>
         <div class="col-md-1">
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-danger" disabled>Delete</button>
         </div>
       </div>
   </form>
