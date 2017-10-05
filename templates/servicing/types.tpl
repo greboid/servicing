@@ -2,14 +2,14 @@
 <div class="container">
   <form class="form-horizontal" method="post" role="form">
     <fieldset>
-      <legend>Add Site</legend>
+      <legend>Add Type</legend>
       <div class="form-group">
-        <label class="col-md-2 control-label" for="Item Name">Site Name</label>
+        <label class="col-md-2 control-label" for="Type Name">Type Name</label>
         <div class="col-md-9">
-          <input id="name" name="name" type="text" placeholder="Site name" class="form-control input-md" required>
+          <input id="name" name="name" type="text" placeholder="Type name" class="form-control input-md" required>
         </div>
         <div class="col-md-1">
-          <button id="addSite" name="addSite" type="submit" class="btn btn-primary btn-block">Add</button>
+          <button id="addSite" name="addType" type="submit" class="btn btn-primary btn-block">Add</button>
         </div>
       </div>
     </fieldset>
@@ -17,14 +17,14 @@
 
   <form class="form-horizontal" method="post" role="form">
     <fieldset>
-      <legend>Delete Site</legend>
+      <legend>Delete Type</legend>
       <div class="row form-group">
         <label class="col-md-2 control-label" for="site">Site</label>
         <div class="col-md-9">
-          <select data-placeholder="Choose a site to delete" id="deleteSite" name="deleteSite" class="form-control" required>
+          <select data-placeholder="Choose a type to delete" id="deleteType" name="deleteType" class="form-control" required>
             <option></option>
-            {foreach item=site from=$sites}
-            <option value="{$site['site_id']}">{$site['site_name']}</option>
+            {foreach item=type from=$types}
+            <option value="{$type['type_id']}">{$type['type_name']}</option>
             {/foreach}
           </select>
         </div>
@@ -37,7 +37,7 @@
 </div>
 {/block} {block name="footerscripts"} {literal}
 <script>
-  $("#editSite").chosen({allow_single_deselect: true})
-  $("#deleteSite").chosen({allow_single_deselect: true})
+  $("#editType").chosen({allow_single_deselect: true})
+  $("#deleteType").chosen({allow_single_deselect: true})
 </script>
 {/literal} {/block}

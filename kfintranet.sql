@@ -18,6 +18,7 @@ CREATE TABLE `contracts` (
   `contract_contractor` int(11) NOT NULL,
   `contract_start` date NOT NULL,
   `contract_end` date NOT NULL,
+  `contract_notes` TEXT,
   PRIMARY KEY (`contract_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -51,10 +52,10 @@ CREATE TABLE `items` (
   `item_type` int(11) NOT NULL,
   `item_location` int(11) NOT NULL,
   `item_site` int(11) NOT NULL,
-  `item_contract` int(11) NOT NULL,
+  `item_contract` int(11),
   `item_interval` int(11) NOT NULL,
   `item_name` varchar(255) NOT NULL,
-  `item_notes` text NOT NULL,
+  `item_notes` text,
   PRIMARY KEY (`item_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 

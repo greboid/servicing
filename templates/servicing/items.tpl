@@ -1,7 +1,7 @@
 {extends file="_base.tpl"}
 {block name=contents}
 <div class="container">
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" role="form" method="POST">
     <fieldset>
         <legend>New Serviceable Item</legend>
     <div class="row form-group">
@@ -39,24 +39,6 @@
     </div>
     </div>
     <div class="row form-group">
-        <label class="col-md-2 control-label" for="contractor">Contract</label>
-        <div class="col-md-10">
-          <select data-placeholder="Choose a contract" id="contractor" name="contractor" class="form-control" required>
-            <option></option>
-            {foreach item=contractor from=$contractors}
-            <option
-              {if $contractor['contract_end'] > {$smarty.now|date_format:'%Y-%m-%d'}}
-                class="bg-success"
-              {else}
-                class="bg-danger"
-              {/if}
-            value="{$contractor['contractor_id']}">{$contractor['contractor_name']} (Ends: {$contractor['contract_end']})
-            </option>
-            {/foreach}
-          </select>
-      </div>
-    </div>
-    <div class="row form-group">
         <label class="col-md-2 control-label" for="interval">Interval</label>
         <div class="col-md-4">
           <select data-placeholder="Choose an interval" id="interval" name="interval" class="form-control" required>
@@ -73,39 +55,13 @@
     </div>
     <div class="row form-group">
       <div class="col-md-offset-11 col-md-1">
-        <button type="submit" class="btn btn-primary btn-block">Add</button>
+        <button id="addItem" name="addItem" type="submit" class="btn btn-primary btn-block">Add</button>
       </div>
     </div>
     </fieldset>
   </form>
 
-  <form class="form-horizontal" role="form">
-    <fieldset>
-      <legend>Edit Serviceable Item</legend>
-      <div class="row form-group">
-        <label class="col-md-2 control-label" for="interval">Interval</label>
-        <div class="col-md-9">
-          <select data-placeholder="Choose a item to edit" id="editItem" name="editItem" class="form-control" required>
-            <option></option>
-            {foreach item=site from=$sites}
-              <optgroup label="{$site['site_name']}">
-              {foreach item=item from=$items}
-                {if $item['site_name'] == $site['site_name']}
-                <option value="{$item['item_id']}">{$item['item_name']}</option>
-                {/if}
-              {/foreach}
-              </optgroup>
-            {/foreach}
-          </select>
-        </div>
-        <div class="col-md-1">
-          <button class="btn btn-primary btn-block" disabled>Edit</button>
-        </div>
-      </div>
-    </fieldset>
-  </form>
-
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" role="form" method="POST">
     <fieldset>
       <legend>Delete Serviceable Item</legend>
       <div class="row form-group">

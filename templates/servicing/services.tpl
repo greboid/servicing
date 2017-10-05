@@ -50,6 +50,11 @@
                             <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#viewServiceModal" data-id="{$value['ID']}" data-history="{$value['service_history']}">Service History</button>
                           </div>
                         </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <button class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#changeContract" data-id="{$value['ID']}">Change Contract</button>
+                          </div>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -66,13 +71,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Update Service Date</h4>
+          <h4 class="modal-title">Add Service</h4>
         </div>
         <div class="modal-body">
           <form method="post" id="updateServiceForm" class="form-horizontal" role="form">
             <input type="hidden" id="newServiceID" name="newServiceID" value="">
             <div class="row form-group">
-                <label class="col-md-3 control-label" for="Item Name">New Service Date</label>
+                <label class="col-md-3 control-label" for="Item Name">Service Date</label>
                 <div class="col-md-9">
                 <input id="newServiceDate" name="newServiceDate" type="date" placeholder="New service Date" class="form-control input-md" required>
                 </div>
@@ -122,10 +127,8 @@
   })
   $('.contractorLink').click(function () {
     swal({
-    title: "Contractor: " + $(this).data('name'),
-    text: "Number: " + $(this).data('phone') + "<br/>" + "Notes: " + $(this).data('notes'),
-    html: true,
-    animation: false
+    title: $(this).data('name'),
+    html: $(this).data('phone') + "<br/>" + "Notes: " + $(this).data('notes'),
   })
   })
 </script>

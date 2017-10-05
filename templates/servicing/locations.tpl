@@ -1,6 +1,6 @@
 {extends file="_base.tpl"} {block name=contents}
 <div class="container">
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" role="form" method="POST">
     <fieldset>
       <legend>Add location</legend>
       <div class="row form-group">
@@ -22,37 +22,13 @@
       </div>
       <div class="row form-group">
         <div class="col-md-offset-11 col-md-1">
-          <button id="addSite" name="addSite" type="submit" class="btn btn-primary btn-block">Add</button>
+          <button id="addLocation" name="addLocation" type="submit" class="btn btn-primary btn-block">Add</button>
         </div>
       </div>
     </fieldset>
   </form>
 
-
-  <form class="form-horizontal" role="form">
-    <fieldset>
-      <legend>Edit Location</legend>
-      <div class="row form-group">
-        <label class="col-md-2 control-label" for="location">Location</label>
-        <div class="col-md-9">
-          <select data-placeholder="Choose a location to edit" id="editLocation" name="editLocation" class="form-control" required>
-            <option></option>
-            {foreach item=site from=$sites}
-            <optgroup label="{$site['site_name']}">
-              {foreach item=location from=$locations} {if $location['site_name'] == $site['site_name']}
-              <option value="{$location['location_id']}">{$location['location_name']}</option>
-              {/if} {/foreach}
-            </optgroup>
-            {/foreach}
-          </select>
-        </div>
-        <div class="col-md-1">
-          <button class="btn btn-primary btn-block" disabled>Edit</button>
-        </div>
-      </div>
-  </form>
-
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" role="form" method="POST">
     <fieldset>
       <legend>Delete Location</legend>
       <div class="row form-group">
@@ -70,7 +46,7 @@
           </select>
         </div>
         <div class="col-md-1">
-          <button class="btn btn-danger btn-block" disabled>Delete</button>
+          <button type="submit" class="btn btn-danger btn-block">Delete</button>
         </div>
       </div>
   </form>
