@@ -11,14 +11,17 @@
   }
 
   if (!empty($_POST['newServiceID']) && !empty($_POST['newServiceDate'])) {
-    $_POST['newServiceDate'];
-    $_POST['newServiceID'];
-    $_POST['newServiceNotes'];
-    $statement = $dbc->prepare('INSERT INTO services (service_item, service_date, service_notes) VALUES(:item, :date, :notes)');
-    $statement->bindValue(':item', $_POST['newServiceID']);
-    $statement->bindValue(':date', $_POST['newServiceDate']);
-    $statement->bindValue(':notes', $_POST['newServiceNotes']);
-    $result = $statement->execute();
+    $newDate = new DateTime($_POST['newServiceDate']);
+    $today = new DateTime();
+    $newDate->setTime( 0, 0, 0 );
+    $today->setTime( 0, 0, 0 );
+    if ($newDate <= $today) {
+      $statement = $dbc->prepare('INSERT INTO services (service_item, service_date, service_notes) VALUES(:item, :date, :notes)');
+      $statement->bindValue(':item', $_POST['newServiceID']);
+      $statement->bindValue(':date', $today->format('Y-m-d'));
+      $statement->bindValue(':notes', $_POST['newServiceNotes']);
+      $result = $statement->execute();
+    }
   }
 
   $statement = $dbc->prepare('SELECT site_name, site_id FROM sites');
