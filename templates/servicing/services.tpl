@@ -41,20 +41,16 @@
                     <td class="{if $value['daysUntilService'] <= 0}danger{elseif $value['daysUntilService'] <= 60 }warning{else}success{/if}">{$value['nextService']|date_format:"%d/%m/%y"}</td>
                     <td class="{if $value['contractLeft'] <= 0}danger{elseif $value['contractLeft'] <= 60 }warning{else}success{/if}">{$value['contractEnd']}</td>
                     <td>
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <button class="btn btn-success btn-sm btn-block" data-toggle="modal" data-target="#updateServiceModal" data-id="{$value['ID']}" data-lastService="{$value['lastService']}">Add service</button>
-                          </div>
-                          <div class="col-md-6">
-                            <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#viewServiceModal" data-id="{$value['ID']}" data-history="{$value['service_history']}">Service History</button>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <button class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#changeContractModal" data-id="{$value['ID']}">Change Contract</button>
-                          </div>
-                        </div>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateServiceModal" data-id="{$value['ID']}" data-lastService="{$value['lastService']}">Add service</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="caret"></span>
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" data-toggle="modal" data-target="#viewServiceModal" data-id="{$value['ID']}" data-history="{$value['service_history']}">Service History</a></li>
+                          <li><a href="#" data-toggle="modal" data-target="#changeContractModal" data-id="{$value['ID']}">Change Contract</a></li>
+                        </ul>
                       </div>
                     </td>
                   </tr>
