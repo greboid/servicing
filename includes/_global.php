@@ -2,13 +2,13 @@
 require __DIR__ . '/../vendor/autoload.php';
 session_save_path('.\sessions');
 session_start();
+define('BASEPATH', $_SERVER['DOCUMENT_ROOT']);
+$connections = array();
+include('config.php');
 if ($debug) {
   error_reporting(E_ALL);
   ini_set('display_errors', 'On');
 }
-define('BASEPATH', $_SERVER['DOCUMENT_ROOT']);
-$connections = array();
-include('config.php');
 
 function makeConnection($connection_name = ''){
   global $connections;
