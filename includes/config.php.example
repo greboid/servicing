@@ -4,4 +4,5 @@ $connections['servicing'] = array( 'driver'=>'mysql',
                                 'dbname'=>'database',
                                 'dbuser'=>'user',
                                 'dbpassword'=>'password');
+$debug = FALSE;
  ?>
