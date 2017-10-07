@@ -15,7 +15,7 @@
     {block name="headerstyles"}{/block}
     <title>Servicing - {$title}</title>
   </head>
-  <body role="document">
+  <body>
     <nav class="navbar navbar-default">
   		<div class="container">
   			<div class="navbar-header">

@@ -2,14 +2,21 @@
   include('includes/_global.php');
   $dbc = makeConnection('servicing');
 
+  if (isset($_POST['editType']) && !empty($_POST['editTypeID'] && !empty($_POST['editTypeName']))) {
+    $statement = $dbc->prepare('UPDATE item_types set type_name=:name where type_id=:id');
+    $statement->bindParam(':name', $_POST['editTypeName']);
+    $statement->bindParam(':id', $_POST['editTypeID']);
+    $statement->execute();
+  }
+
   if (isset($_POST['deleteType']) && isset($_POST['deleteType']) && !empty($_POST['deleteType'])) {
     $statement = $dbc->prepare('DELETE from item_types where type_id=:id');
     $statement->bindParam(':id', $_POST['deleteType']);
     $statement->execute();
   }
-  if (isset($_POST['addType']) && isset($_POST['name']) && !empty($_POST['name'])) {
+  if (isset($_POST['addType']) && isset($_POST['newTypeName']) && !empty($_POST['newTypeName'])) {
     $statement = $dbc->prepare('INSERT INTO item_types VALUES(NULL, :name)');
-    $statement->bindParam(':name', $_POST['name']);
+    $statement->bindParam(':name', $_POST['newTypeName']);
     $statement->execute();
   }
 
