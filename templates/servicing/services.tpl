@@ -52,7 +52,7 @@
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                            <button class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#changeContract" data-id="{$value['ID']}">Change Contract</button>
+                            <button class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#changeContractModal" data-id="{$value['ID']}">Change Contract</button>
                           </div>
                         </div>
                       </div>
@@ -113,6 +113,44 @@
       </div>
     </div>
   </div>
+
+  <div class="modal" id="changeContractModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Change Contract</h4>
+        </div>
+        <div class="modal-body">
+          <form method="post" id="changeContractForm" class="form-horizontal" role="form">
+            <input type="hidden" id="changeContractID" name="changeContractID" value="">
+            <div class="row form-group">
+                <label class="col-md-3 control-label" for="changeContractContract">New Contract</label>
+                <div class="col-md-9">
+                  <select data-placeholder="Choose a new contract" id="changeContractContract" name="changeContractContract" class="form-control input-md" required>
+                    <option></option>
+                    {foreach item=contract from=$contracts}
+                      <option
+                        {if $contract['contract_end'] > {$smarty.now|date_format:'%Y-%m-%d'}}
+                        class="bg-success"
+                        {else}
+                        class="bg-danger"
+                        {/if}
+                        value="{$contract['contract_id']}">{$contract['contractor_name']} (Ends: {$contract['contract_end']})
+                        </option>
+                    {/foreach}
+                  </select>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button form="changeContractForm" name="changeContract" type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {/block}
 {block name="footerscripts"}
@@ -131,6 +169,10 @@
     html: $(this).data('phone') + "<br/>" + "Notes: " + $(this).data('notes'),
   })
   })
+  $('#changeContractModal').on('show.bs.modal', function (event) {
+    $(this).find('#changeContractID').val($(event.relatedTarget).data('id'))
+  })
+  $("#changeContractContract").chosen({allow_single_deselect: true})
 </script>
 {/literal}
 {/block}

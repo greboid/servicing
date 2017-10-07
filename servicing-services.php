@@ -2,6 +2,13 @@
   include('includes/_global.php');
   $dbc = makeConnection('servicing');
 
+  if (isset($_POST['changeContract']) && !empty($_POST['changeContractID']) && !empty($_POST['changeContractContract'])) {
+    $statement = $dbc->prepare('UPDATE items set item_contract=:contract_ID where item_id=:item_ID');
+    $statement->bindParam(':contract_ID', $_POST['changeContractContract']);
+    $statement->bindParam(':item_ID', $_POST['changeContractID']);
+    $statement->execute();
+  }
+
   if (!empty($_POST['newServiceID']) && !empty($_POST['newServiceDate'])) {
     $_POST['newServiceDate'];
     $_POST['newServiceID'];
@@ -71,10 +78,17 @@
   }
   sort($sitesData);
 
+  $statement = $dbc->prepare('SELECT contract_id, contractor_name, contract_end
+                             FROM contracts
+                             LEFT JOIN contractors ON contract_contractor=contractor_id');
+  $result = $statement->execute();
+  $contracts = $statement->fetchAll();
+
   $tpl = new Smarty;
   $tpl->template_dir = getcwd() . '/templates/';
   $tpl->compile_dir  = getcwd() . '/templates/cache/';
   $tpl->assign('sites', $sitesData);
+  $tpl->assign('contracts', $contracts);
   $tpl->assign('title', 'Servicing');
   $tpl->display('servicing/services.tpl');
 ?>
