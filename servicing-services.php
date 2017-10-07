@@ -3,8 +3,9 @@
   $dbc = makeConnection('servicing');
 
   if (isset($_POST['changeContract']) && !empty($_POST['changeContractID']) && !empty($_POST['changeContractContract'])) {
+    $contractID = $_POST['changeContractContract'] == -1 ? NULL : $_POST['changeContractContract'];
     $statement = $dbc->prepare('UPDATE items set item_contract=:contract_ID where item_id=:item_ID');
-    $statement->bindParam(':contract_ID', $_POST['changeContractContract']);
+    $statement->bindParam(':contract_ID', $contractID);
     $statement->bindParam(':item_ID', $_POST['changeContractID']);
     $statement->execute();
   }

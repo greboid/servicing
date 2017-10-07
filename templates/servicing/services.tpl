@@ -129,6 +129,7 @@
                 <div class="col-md-9">
                   <select data-placeholder="Choose a new contract" id="changeContractContract" name="changeContractContract" class="form-control input-md" required>
                     <option></option>
+                    <option value="-1">No Contract</option>
                     {foreach item=contract from=$contracts}
                       <option
                         {if $contract['contract_end'] > {$smarty.now|date_format:'%Y-%m-%d'}}
