@@ -1,7 +1,12 @@
 {
     "name": "greboid/servicing",
     "require": {
-        "smarty/smarty": "^3.1"
+        "smarty/smarty": "^3.1",
+        "fxp/composer-asset-plugin": "^1.4",
+        "bower-asset/jquery-ui": "^1.12",
+        "bower-asset/bootstrap": "^3.3",
+        "bower-asset/chosen-bootstrap": "^1.1",
+        "bower-asset/sweetalert2": "^6.10"
     },
     "license": "MIT",
     "authors": [
@@ -9,5 +14,12 @@
             "name": "Greg Holmes",
             "email": "git@greg.holmes.name"
         }
-    ]
+    ],
+    "config": {
+        "fxp-asset": {
+            "installer-paths": {
+                "bower-asset-library": "bower_components"
+            }
+        }
+    }
 }

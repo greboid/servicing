@@ -6,7 +6,6 @@ Installation
 ----
 Requires PHP and MySQL, developed on windows but probably works elsewhere (I'll add a .htaccess and fix paths if needed)
  - composer install
- - bower install
  - copy config.php.example in the includes folder to config.php and edit appropriately.
  - Import database.sql into the database
 
