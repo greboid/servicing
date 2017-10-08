@@ -34,6 +34,7 @@
   			</div>
   		</div>
     </nav>
+    {if isset($messages)}
     <div class="container">
       {foreach item=message from=$messages}
         <div class="alert alert-warning alert-dismissible" role="alert">
@@ -42,6 +43,7 @@
         </div>
       {/foreach}
     </div>
+    {/if}
     {block name=contents}{/block}
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
