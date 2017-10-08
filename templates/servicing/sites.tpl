@@ -3,7 +3,7 @@
 
   <h3>Site List</h3>
   <form method="post">
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover table-bordered">
       <thead>
         <tr>
           <th>Site</th>
