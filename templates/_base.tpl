@@ -34,6 +34,14 @@
   			</div>
   		</div>
     </nav>
+    <div class="container">
+      {foreach item=message from=$messages}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {$message}
+        </div>
+      {/foreach}
+    </div>
     {block name=contents}{/block}
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
