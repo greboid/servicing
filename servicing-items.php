@@ -2,7 +2,77 @@
   include('includes/_global.php');
   $dbc = makeConnection('servicing');
 
-  if (!empty($_POST['deleteItem'])) {
+  if (isset($_POST['editItem'])
+        && !empty($_POST['editItemID'])
+        && !empty($_POST['editItemName'])
+        && !empty($_POST['editItemLocation'])
+        && !empty($_POST['editItemType'])
+        && !empty($_POST['editItemInterval'])
+      ) {
+    $statement = $dbc->prepare('SELECT COUNT(*) FROM items where item_id=:id');
+    $statement->bindParam(':id', $_POST['editItemID']);
+    $statement->execute();
+    $results = $statement->fetch();
+    $idExists = $results['COUNT(*)'];
+    if ($idExists <= 0) {
+      $_SESSION['flash'][] = "Error editing item: ID does not exist";
+    }
+
+    $statement = $dbc->prepare('SELECT COUNT(*) FROM items where item_name=:name');
+    $statement->bindParam(':name', $_POST['editItemName']);
+    $statement->execute();
+    $results = $statement->fetch();
+    $nameExists = $results['COUNT(*)'];
+    if ($nameExists > 0) {
+      $_SESSION['flash'][] = "Error editing item: Name Exists";
+    }
+
+    $statement = $dbc->prepare('SELECT COUNT(*) FROM locations where location_id=:id');
+    $statement->bindParam(':id', $_POST['editItemLocation']);
+    $statement->execute();
+    $results = $statement->fetch();
+    $locationExists = $results['COUNT(*)'];
+    if ($locationExists <= 0) {
+      $_SESSION['flash'][] = "Error editing item: Location does not exist";
+    }
+
+    $statement = $dbc->prepare('SELECT COUNT(*) FROM item_types where type_id=:id');
+    $statement->bindParam(':id', $_POST['editItemType']);
+    $statement->execute();
+    $results = $statement->fetch();
+    $typeExists = $results['COUNT(*)'];
+    if ($typeExists <= 0) {
+      $_SESSION['flash'][] = "Error editing item: Type does not exist";
+    }
+
+    $statement = $dbc->prepare('SELECT COUNT(*) FROM intervals where intervals_id=:id');
+    $statement->bindParam(':id', $_POST['editItemInterval']);
+    $statement->execute();
+    $results = $statement->fetch();
+    $intervalExists = $results['COUNT(*)'];
+    if ($intervalExists <= 0) {
+      $_SESSION['flash'][] = "Error editing item: Interval does not exist";
+    }
+
+    if ($idExists > 0 && $nameExists <= 0 && $locationExists > 0 && $typeExists > 0 && $intervalExists > 0) {
+      $statement = $dbc->prepare('UPDATE items
+                                 SET
+                                  item_name=:name,
+                                  item_location=:location,
+                                  item_type=:type,
+                                  item_interval=:interval,
+                                  item_site=(SELECT location_site FROM locations where location_id=:location)
+                                 WHERE item_id=:id');
+      $statement->bindParam(':id', $_POST['editItemID'], PDO::PARAM_INT);
+      $statement->bindParam(':name', $_POST['editItemName'], PDO::PARAM_STR);
+      $statement->bindParam(':location', $_POST['editItemLocation'], PDO::PARAM_INT);
+      $statement->bindParam(':type', $_POST['editItemType'], PDO::PARAM_INT);
+      $statement->bindParam(':interval', $_POST['editItemInterval'], PDO::PARAM_INT);
+      $statement->execute();
+    }
+  }
+
+  if (isset($_POST['deleteItem']) && !empty($_POST['deleteItem'])) {
     $statement = $dbc->prepare('DELETE FROM items WHERE item_id=:item_id');
     $statement->bindParam(':item_id', $_POST['deleteItem']);
     $statement->execute();
@@ -43,7 +113,8 @@
     $intervals = $intervals['COUNT(*)'];
 
     if ($locations && $types && $contracts && $intervals) {
-      $statement = $dbc->prepare('INSERT INTO items VALUES (NULL, :item_type, :item_location, (SELECT location_site FROM locations where location_id=:item_location), :item_contract, :item_interval, :item_name, :item_notes)');
+      $statement = $dbc->prepare('INSERT INTO items VALUES (NULL, :item_type, :item_location, (SELECT location_
+       FROM locations where location_id=:item_location), :item_contract, :item_interval, :item_name, :item_notes)');
       $statement->bindParam(':item_type', $_POST['type']);
       $statement->bindParam(':item_location', $_POST['location']);
       $statement->bindValue(':item_contract', isset($_POST['contract']) ? $_POST['contract'] : NULL);
@@ -82,8 +153,11 @@
   $result = $statement->execute();
   $intervals = $statement->fetchAll();
 
-  $statement = $dbc->prepare('SELECT item_id, item_name, site_name
+  $statement = $dbc->prepare('SELECT item_id, item_name, item_location, item_type, item_interval, site_name, location_name, intervals_name, type_name
     FROM items
+    INNER JOIN intervals on item_interval=intervals_id
+    INNER JOIN item_types on item_type=type_id
+    INNER JOIN locations on item_location=location_id
     INNER JOIN sites on item_site=site_id');
   $result = $statement->execute();
   $items = $statement->fetchAll();
@@ -100,5 +174,10 @@
   $tpl->assign('contractors', $contractors);
   $tpl->assign('intervals', $intervals);
   $tpl->assign('items', $items);
+  if (isset($_SESSION['flash'])) {
+    $tpl->assign('messages', $_SESSION['flash']);
+  }
+  $_SESSION['flash'] = array();
+
   $tpl->display('servicing/items.tpl');
 ?>
