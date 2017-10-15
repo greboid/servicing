@@ -68,6 +68,8 @@
       </div>
     </div>
   </div>
+
+</div>
 {/block} {block name="footerscripts"} {literal}
 <script>
   $('#editSiteModal').on('show.bs.modal', function (event) {
