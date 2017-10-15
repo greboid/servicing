@@ -2,6 +2,31 @@
   include('includes/_global.php');
   $dbc = makeConnection('servicing');
 
+  if (isset($_POST['editLocation']) && !empty($_POST['editLocationID']) && !empty($_POST['editLocationName'])) {
+    $statement = $dbc->prepare('SELECT COUNT(*) FROM locations where location_id=:id');
+    $statement->bindParam(':id', $_POST['editLocationID']);
+    $statement->execute();
+    $result = $statement->fetch();
+    $result = $result['COUNT(*)'];
+    if ($result) {
+      $statement = $dbc->prepare('SELECT COUNT(*) FROM locations where location_name=:name');
+      $statement->bindParam(':name', $_POST['editLocationName']);
+      $statement->execute();
+      $result = $statement->fetch();
+      $result = $result['COUNT(*)'];
+      if (!$result) {
+        $statement = $dbc->prepare('UPDATE locations set location_name=:name WHERE location_id=:id');
+        $statement->bindParam(':id', $_POST['editLocationID']);
+        $statement->bindParam(':name', $_POST['editLocationName']);
+        $statement->execute();
+      } else {
+        $_SESSION['flash'][] = "Error editing location: New name already exists";
+      }
+    } else {
+      $_SESSION['flash'][] = "Error editing location: ID is invalid";
+    }
+  }
+
   if (isset($_POST['deleteLocation']) && !empty($_POST['deleteLocation'])) {
     $statement = $dbc->prepare('SELECT COUNT(*) FROM items WHERE item_location=:location_id');
     $statement->bindParam(":location_id", $_POST['deleteSite']);
@@ -45,4 +70,9 @@
   $tpl->assign('title', 'Service Contracts');
   $tpl->assign('locations', $locations);
   $tpl->assign('sites', $sites);
+  if (isset($_SESSION['flash'])) {
+    $tpl->assign('messages', $_SESSION['flash']);
+  }
+  $_SESSION['flash'] = array();
+
   $tpl->display('servicing/locations.tpl');
