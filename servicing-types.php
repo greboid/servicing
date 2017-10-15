@@ -29,7 +29,7 @@
     }
   }
 
-  if (isset($_POST['deleteType']) && isset($_POST['deleteType']) && !empty($_POST['deleteType'])) {
+  if (isset($_POST['deleteType']) && !empty($_POST['deleteType'])) {
     $statement = $dbc->prepare('SELECT COUNT(*) FROM items where item_type=:type');
     $statement->bindParam(':type', $_POST['deleteType']);
     $statement->execute();

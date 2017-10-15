@@ -77,7 +77,6 @@
     $(this).find('#editTypeName').val($(event.relatedTarget).data('data'))
     $(this).find('#editTypeID').val($(event.relatedTarget).data('id'))
   })
-  $("#editType").chosen({allow_single_deselect: true})
   $("#deleteType").chosen({allow_single_deselect: true})
 </script>
 {/literal} {/block}
