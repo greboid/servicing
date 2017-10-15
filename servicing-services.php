@@ -60,7 +60,7 @@
             COALESCE(
               (SELECT
                 CONCAT(
-                  GROUP_CONCAT(CONCAT(service_date, '\r\n', service_notes) SEPARATOR '\r\n\r\n'), '\r\n'
+                  GROUP_CONCAT(CONCAT(service_date, '\r\n', IF(service_notes = '', 'No Service Notes', service_notes)) SEPARATOR '\r\n\r\n'), '\r\n'
                 ) FROM services WHERE service_item=item_id
               ),
               'No service history.'
