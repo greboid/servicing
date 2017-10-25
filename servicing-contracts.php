@@ -59,11 +59,17 @@
   $result = $statement->execute();
   $items = $statement->fetchAll();
 
-  $statement = $dbc->prepare('SELECT contract_id, contractor_name, contract_end
+  $statement = $dbc->prepare('SELECT contract_id, contractor_id, contractor_name, contract_start, contract_end, contract_notes
                              FROM contracts
                              LEFT JOIN contractors ON contract_contractor=contractor_id');
   $result = $statement->execute();
   $contracts = $statement->fetchAll();
+  foreach ($contracts as &$value) {
+    $statement = $dbc->prepare('SELECT item_id, item_name FROM items WHERE item_contract=:contract');
+    $statement->bindParam(':contract', $value['contract_id']);
+    $result = $statement->execute();
+    $value['contract_items'] = $statement->fetchAll();
+  }
 
   $tpl = new Smarty;
   $tpl->template_dir = getcwd() . '/templates/';
