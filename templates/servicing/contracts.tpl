@@ -41,7 +41,13 @@
                 data-contractor="{$contract['contractor_id']}"
                 data-start="{$contract['contract_start']}"
                 data-end="{$contract['contract_end']}"
-                data-notes="{$contract['contract_notes']}">
+                data-notes="{$contract.contract_notes}"
+                data-items="{strip}[
+                {foreach item=item from=$contract['contract_items'] name=contracts}
+                {$item['item_id']}{if not $smarty.foreach.contracts.last},{/if}
+                {/foreach}]
+                {/strip}"
+                >
               Edit</button>
             <button type="submit" name="deleteContract" class="btn btn-danger" value="{$contract['contract_id']}">Delete</button>
           </td>
@@ -170,11 +176,13 @@
 {literal}
 <script>
 $('#editContractModal').on('show.bs.modal', function (event) {
-  $(this).find('#editContractID').val($(event.relatedTarget).data('id'))
-  $(this).find('#editContractor').val($(event.relatedTarget).data('contractor'))
-  $(this).find('#editStartDate').val($(event.relatedTarget).data('start'))
-  $(this).find('#editEndDate').val($(event.relatedTarget).data('end'))
-  $(this).find('#editNotes').val($(event.relatedTarget).data('notes'))
+  $(this).find('#editContractID').val($(event.relatedTarget).data('id'));
+  $(this).find('#editContractor').val($(event.relatedTarget).data('contractor'));
+  $(this).find('#editStartDate').val($(event.relatedTarget).data('start'));
+  $(this).find('#editEndDate').val($(event.relatedTarget).data('end'));
+  $(this).find('#editNotes').val($(event.relatedTarget).data('notes'));
+  $(this).find('#editItems').val($(event.relatedTarget).data('items'));
+  $(this).find('#editItems').trigger("chosen:updated");
 })
 $("#contractor").chosen({ allow_single_deselect: true })
 $("#items").chosen({ allow_single_deselect: true })
