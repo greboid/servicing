@@ -2,6 +2,37 @@
   include('includes/_global.php');
   $dbc = makeConnection('servicing');
 
+  if (isset($_POST['editContract'])
+        && !empty($_POST['editContractID'])
+        && !empty($_POST['editContractor'])
+        && !empty($_POST['editStartDate'])
+        && !empty($_POST['editEndDate'])
+        && !empty($_POST['editItems'])
+        && !empty($_POST['editNotes'])) {
+    $startDate = new DateTime($_POST['editStartDate']);
+    $endDate = new DateTime($_POST['editEndDate']);
+
+    $statement = $dbc->prepare('UPDATE contracts SET
+                               contract_contractor=:contractor,
+                               contract_start=:start,
+                               contract_end=:end,
+                               contract_notes=:notes
+                               WHERE contract_id=:contractID');
+    $statement->bindParam(':contractID', $_POST['editContractID']);
+    $statement->bindParam(':contractor', $_POST['editContractor']);
+    $statement->bindValue(':start', $startDate->format('Y-m-d'));
+    $statement->bindValue(':end', $endDate->format('Y-m-d'));
+    $statement->bindParam(':notes', $_POST['editNotes']);
+    $statement->execute();
+
+    foreach ($_POST['editItems'] as $item) {
+      $statement = $dbc->prepare('UPDATE items set item_contract=:contract WHERE item_id=:item_id');
+      $statement->bindParam(':contract', $_POST['editContractID']);
+      $statement->bindParam(':item_id', $item);
+      $statement->execute();
+    }
+  }
+
   if (isset($_POST['add']) && !empty($_POST['contractor'])
       && !empty($_POST['startDate'])
       && !empty($_POST['endDate'])) {
