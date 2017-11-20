@@ -7,8 +7,7 @@
         && !empty($_POST['editContractor'])
         && !empty($_POST['editStartDate'])
         && !empty($_POST['editEndDate'])
-        && !empty($_POST['editItems'])
-        && !empty($_POST['editNotes'])) {
+        && isset($_POST['editNotes'])) {
     $startDate = new DateTime($_POST['editStartDate']);
     $endDate = new DateTime($_POST['editEndDate']);
 
@@ -25,11 +24,18 @@
     $statement->bindParam(':notes', $_POST['editNotes']);
     $statement->execute();
 
-    foreach ($_POST['editItems'] as $item) {
-      $statement = $dbc->prepare('UPDATE items set item_contract=:contract WHERE item_id=:item_id');
-      $statement->bindParam(':contract', $_POST['editContractID']);
-      $statement->bindParam(':item_id', $item);
-      $statement->execute();
+    $statement = $dbc->prepare('UPDATE items set item_contract=-1 WHERE item_contract=:contract');
+    $statement->bindParam(':contract', $_POST['editContractID']);
+    $result = $statement->execute();
+    if (isset($_POST['editItems'])) {
+      foreach ($_POST['editItems'] as $item) {
+        var_dump($_POST['editContractID']);
+        var_dump($item);
+        $statement = $dbc->prepare('UPDATE items set item_contract=:contract WHERE item_id=:item_id');
+        $statement->bindParam(':contract', $_POST['editContractID']);
+        $statement->bindParam(':item_id', $item);
+        $result = $statement->execute();
+      }
     }
   }
 
