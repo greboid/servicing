@@ -29,8 +29,6 @@
     $result = $statement->execute();
     if (isset($_POST['editItems'])) {
       foreach ($_POST['editItems'] as $item) {
-        var_dump($_POST['editContractID']);
-        var_dump($item);
         $statement = $dbc->prepare('UPDATE items set item_contract=:contract WHERE item_id=:item_id');
         $statement->bindParam(':contract', $_POST['editContractID']);
         $statement->bindParam(':item_id', $item);
