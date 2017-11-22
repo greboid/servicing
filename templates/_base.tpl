@@ -23,6 +23,7 @@
   			</div>
   			<div id="navbar" class="navbar-header">
   				<ul class="nav navbar-nav">
+              <li><a href="/servicing/dashboard"><i class="glyphicon glyphicon-dashboard"></i> Dashboard</a></li>
                 <li><a href="/servicing/services"><i class="glyphicon glyphicon-calendar"></i> Services</a></li>
                 <li><a href="/servicing/contracts"><i class="glyphicon glyphicon-cog"></i> Contracts</a></li>
                 <li><a href="/servicing/items"><i class="glyphicon glyphicon-list"></i> Items</a></li>

@@ -1,3 +1,3 @@
 <?php
-  header('Location: /servicing/services');
+  header('Location: /servicing/dashboard');
 ?>
